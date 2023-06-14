@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: node-server
+    container_name: server
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - db
+    command: npm run dev
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=123123
+      - POSTGRES_DB=projectsdb
