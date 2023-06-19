@@ -13,11 +13,26 @@ services:
       - .:/usr/src/app
     depends_on:
       - db
+    networks:
+      - postgres-app
     command: npm run dev
 
   db:
     image: postgres
     restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=123123
       - POSTGRES_DB=projectsdb
+    networks:
+      - postgres-app
+
+networks:
+  postgres-app:
+    driver: bridge
+
+volumes:
+  data:

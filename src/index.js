@@ -7,7 +7,7 @@ import "./models/Task.js";
 try {
   await sequelize.sync({ force: false });
   await sequelize.authenticate();
-  console.log("Connection to projectsdb has been success");
+  console.log("Connection to projectsdb has been success ss");
 } catch (error) {
   console.log(error);
 }
